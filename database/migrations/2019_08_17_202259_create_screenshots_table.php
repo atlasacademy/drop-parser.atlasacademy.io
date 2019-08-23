@@ -15,12 +15,12 @@ class CreateScreenshotsTable extends Migration
     {
         Schema::create('screenshots', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('node_id')->unsigned();
-            $table->string('submitter')->nullable();
+            $table->string('node', 21);
             $table->string('receipt', 36);
-            $table->string('token', 50)->nullable();
-            $table->bigInteger('submission_id')->unsigned()->nullable();
+            $table->text('parse_result')->nullable();
             $table->timestamps();
+
+            $table->index('receipt');
         });
     }
 

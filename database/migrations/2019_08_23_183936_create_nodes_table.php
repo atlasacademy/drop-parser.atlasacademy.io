@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDropsTable extends Migration
+class CreateNodesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateDropsTable extends Migration
      */
     public function up()
     {
-        Schema::create('drops', function (Blueprint $table) {
+        Schema::create('nodes', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('uid');
-            $table->integer('quantity')->unsigned()->nullable();
-            $table->string('condition')->nullable();
-            $table->text('template')->nullable();
+            $table->string('uid', 21);
+            $table->boolean('active')->default(true);
             $table->timestamps();
+
+            $table->index('uid');
         });
     }
 
@@ -30,6 +30,6 @@ class CreateDropsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('drops');
+        Schema::dropIfExists('nodes');
     }
 }
